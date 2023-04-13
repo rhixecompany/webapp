@@ -12,7 +12,7 @@ export const listCategorys = () => async (dispatch) => {
   try {
     dispatch({ type: CATEGORY_LIST_REQUEST });
 
-    const { data } = await axios.get(`http://localhost:8000/api/categorys/`);
+    const { data } = await axios.get(`/api/categorys/`);
 
     dispatch({
       type: CATEGORY_LIST_SUCCESS,
@@ -34,9 +34,7 @@ export const listcategorysDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: CATEGORY_DETAILS_REQUEST });
 
-    const { data } = await axios.get(
-      `http://localhost:8000/api/categorys/${id}/`
-    );
+    const { data } = await axios.get(`/api/categorys/${id}/`);
 
     dispatch({
       type: CATEGORY_DETAILS_SUCCESS,

@@ -30,7 +30,7 @@ export const LikeComic = (id) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.post(
-      `http://localhost:8000/api/like/`,
+      `/api/like/`,
       {
         postid: id,
       },
@@ -69,10 +69,7 @@ export const bookmarkComic = (slug) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(
-      `http://localhost:8000/api/bookmarks/add/${slug}/`,
-      config
-    );
+    const { data } = await axios.get(`/api/bookmarks/add/${slug}/`, config);
     dispatch({
       type: COMICS_BOOKMARK_ADD_SUCCESS,
       payload: data,
@@ -105,10 +102,7 @@ export const bookmarkComicList = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(
-      `http://localhost:8000/api/bookmarks/`,
-      config
-    );
+    const { data } = await axios.get(`/api/bookmarks/`, config);
     dispatch({
       type: COMICS_BOOKMARK_LIST_SUCCESS,
       payload: data,

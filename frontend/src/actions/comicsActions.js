@@ -28,10 +28,8 @@ export const listComics =
     try {
       dispatch({ type: COMICS_LIST_REQUEST });
 
-      const { data } = await axios.get(
-        `http://localhost:8000/api/comics/${keyword}`
-      );
-      // const { data } = await axios.get(`http://localhost:8000/api/comics/?page=8`);
+      const { data } = await axios.get(`/api/comics/${keyword}`);
+      // const { data } = await axios.get(`/api/comics/?page=8`);
       dispatch({
         type: COMICS_LIST_SUCCESS,
         payload: data,
@@ -67,10 +65,8 @@ export const listComicDetails = (slug) => async (dispatch, getState) => {
     //     Authorization: `Bearer ${userInfo.token}`,
     //   },
     // };
-    //const { data } = await axios.get(`http://localhost:8000/api/comic/${slug}/`, config);
-    const { data } = await axios.get(
-      `http://localhost:8000/api/comics/${slug}/`
-    );
+    //const { data } = await axios.get(`/api/comic/${slug}/`, config);
+    const { data } = await axios.get(`/api/comics/${slug}/`);
 
     dispatch({
       type: COMICS_DETAILS_SUCCESS,
@@ -98,7 +94,7 @@ export const listTopComics = () => async (dispatch) => {
   try {
     dispatch({ type: COMICS_TOP_REQUEST });
 
-    const { data } = await axios.get(`http://localhost:8000/api/comics/top/`);
+    const { data } = await axios.get(`/api/comics/top/`);
 
     dispatch({
       type: COMICS_TOP_SUCCESS,
@@ -132,10 +128,7 @@ export const deleteComic = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.delete(
-      `http://localhost:8000/api/comics/delete/${id}/`,
-      config
-    );
+    const { data } = await axios.delete(`/api/comics/delete/${id}/`, config);
     console.log(data);
     dispatch({
       type: COMICS_DELETE_SUCCESS,
@@ -171,11 +164,7 @@ export const createComic = () => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await axios.post(
-      `http://localhost:8000/api/comics/create/`,
-      {},
-      config
-    );
+    const { data } = await axios.post(`/api/comics/create/`, {}, config);
     dispatch({
       type: COMICS_CREATE_SUCCESS,
       payload: data,
@@ -213,7 +202,7 @@ export const updateComic = (comic) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.put(
-      `http://localhost:8000/api/comics/update/${comic._id}/`,
+      `/api/comics/update/${comic._id}/`,
       comic,
       config
     );

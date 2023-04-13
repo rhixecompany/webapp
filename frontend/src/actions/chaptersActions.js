@@ -36,11 +36,8 @@ export const listChapters =
           Authorization: `Bearer ${userInfo.token}`,
         },
       };
-      const { data } = await axios.get(
-        `http://localhost:8000/api/chapters/${keyword}`,
-        config
-      );
-      // const { data } = await axios.get(`http://localhost:8000/api/chapters/`);
+      const { data } = await axios.get(`/api/chapters/${keyword}`, config);
+      // const { data } = await axios.get(`/api/chapters/`);
 
       dispatch({
         type: CHAPTERS_LIST_SUCCESS,
@@ -78,10 +75,7 @@ export const listChapterDetails = (name) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(
-      `http://localhost:8000/api/chapters/${name}/`,
-      config
-    );
+    const { data } = await axios.get(`/api/chapters/${name}/`, config);
 
     dispatch({
       type: CHAPTERS_DETAILS_SUCCESS,
@@ -122,10 +116,7 @@ export const deleteChapter = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.delete(
-      `http://localhost:8000/api/chapters/delete/${id}/`,
-      config
-    );
+    const { data } = await axios.delete(`/api/chapters/delete/${id}/`, config);
     console.log(data);
     dispatch({
       type: CHAPTERS_DELETE_SUCCESS,
@@ -158,11 +149,7 @@ export const createChapter = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.post(
-      `http://localhost:8000/api/chapters/create/`,
-      {},
-      config
-    );
+    const { data } = await axios.post(`/api/chapters/create/`, {}, config);
     dispatch({
       type: CHAPTERS_CREATE_SUCCESS,
       payload: data,
@@ -196,7 +183,7 @@ export const updateChapter = (chapter) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.put(
-      `http://localhost:8000/api/chapters/update/${chapter.id}/`,
+      `/api/chapters/update/${chapter.id}/`,
       chapter,
       config
     );
@@ -238,11 +225,7 @@ export const createChapterReview =
         },
       };
 
-      await axios.post(
-        `http://localhost:8000/api/chapters/${chapterId}/reviews/`,
-        review,
-        config
-      );
+      await axios.post(`/api/chapters/${chapterId}/reviews/`, review, config);
 
       dispatch({
         type: CHAPTER_CREATE_REVIEW_SUCCESS,

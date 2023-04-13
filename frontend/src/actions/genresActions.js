@@ -12,7 +12,7 @@ export const listGenres = () => async (dispatch) => {
   try {
     dispatch({ type: GENRES_LIST_REQUEST });
 
-    const { data } = await axios.get(`http://localhost:8000/api/genres/`);
+    const { data } = await axios.get(`/api/genres/`);
 
     dispatch({
       type: GENRES_LIST_SUCCESS,
@@ -34,7 +34,7 @@ export const listGenreDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: GENRES_DETAILS_REQUEST });
 
-    const { data } = await axios.get(`http://localhost:8000/api/genres/${id}/`);
+    const { data } = await axios.get(`/api/genres/${id}/`);
 
     dispatch({
       type: GENRES_DETAILS_SUCCESS,

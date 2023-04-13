@@ -34,13 +34,10 @@ export const login = (username, password) => async (dispatch) => {
     dispatch({
       type: USER_LOGIN_REQUEST,
     });
-    const { data } = await axios.post(
-      "http://localhost:8000/api/users/login/",
-      {
-        username: username,
-        password: password,
-      }
-    );
+    const { data } = await axios.post("/api/users/login/", {
+      username: username,
+      password: password,
+    });
 
     dispatch({
       type: USER_LOGIN_SUCCESS,
@@ -78,14 +75,11 @@ export const register = (username, email, password) => async (dispatch) => {
       type: USER_REGISTER_REQUEST,
     });
 
-    const { data } = await axios.post(
-      "http://localhost:8000/api/users/register/",
-      {
-        email: email,
-        username: username,
-        password: password,
-      }
-    );
+    const { data } = await axios.post("/api/users/register/", {
+      email: email,
+      username: username,
+      password: password,
+    });
     //console.log(data);
     dispatch({
       type: USER_REGISTER_SUCCESS,
@@ -125,10 +119,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await axios.get(
-      `http://localhost:8000/api/users/${id}/`,
-      config
-    );
+    const { data } = await axios.get(`/api/users/${id}/`, config);
 
     dispatch({
       type: USER_DETAILS_SUCCESS,
@@ -162,10 +153,7 @@ export const getUserProfile = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(
-      `http://localhost:8000/api/users/profile/`,
-      config
-    );
+    const { data } = await axios.get(`/api/users/profile/`, config);
 
     dispatch({
       type: USER_PROFILE_SUCCESS,
@@ -200,7 +188,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.put(
-      `http://localhost:8000/api/users/profile/update/`,
+      `/api/users/profile/update/`,
       user,
       config
     );
@@ -243,10 +231,7 @@ export const listUsers = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(
-      `http://localhost:8000/api/users/`,
-      config
-    );
+    const { data } = await axios.get(`/api/users/`, config);
 
     dispatch({
       type: USER_LIST_SUCCESS,
@@ -280,10 +265,7 @@ export const deleteUser = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.delete(
-      `http://localhost:8000/api/users/delete/${id}/`,
-      config
-    );
+    const { data } = await axios.delete(`/api/users/delete/${id}/`, config);
 
     dispatch({
       type: USER_DELETE_SUCCESS,
@@ -319,7 +301,7 @@ export const updateUser =
       };
 
       const { data } = await axios.put(
-        `http://localhost:8000/api/users/update/${id}/`,
+        `/api/users/update/${id}/`,
         {
           id: id,
           first_name: first_name,
