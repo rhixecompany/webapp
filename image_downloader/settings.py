@@ -18,7 +18,7 @@ NEWSPIDER_MODULE = 'image_downloader.spiders'
 USER_AGENT = "Mozilla/5.0 (Windows NT x.y; Win64; x64; rv:10.0) Gecko/20100101 Firefox/10.0"
 
 ROBOTSTXT_OBEY = False
-DOWNLOAD_DELAY = 4
+DOWNLOAD_DELAY = 1
 CONCURRENT_REQUESTS_PER_DOMAIN = 1
 
 ITEM_PIPELINES = {
