@@ -4,13 +4,13 @@ Requires=rhixescans.socket
 After=network.target
 
 [Service]
-ExecStart=/home/bot/rhixescans/env/bin/gunicorn \
+ExecStart=/home/bot/env/bin/gunicorn \
     --access-logfile - \
     --workers 5 \
     --bind unix:/run/rhixescans.sock \
     core.wsgi:application
 
-WorkingDirectory=/home/bot/rhixescans
+WorkingDirectory=/home/bot
 
 User=bot
 Group=www-data
