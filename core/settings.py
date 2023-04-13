@@ -109,16 +109,16 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-    "http://localhost",
-    "http://127.0.0.1",
-    "https://rhixescans.tk",
-    "https://www.rhixescans.tk",
-]
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:3000",
+#     "http://127.0.0.1:3000",
+#     "http://localhost",
+#     "http://127.0.0.1",
+#     "https://rhixescans.tk",
+#     "https://www.rhixescans.tk",
+# ]
 
-# CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_ALL_ORIGINS = True
 # AUTHENTICATION_BACKENDS = (
 #     "django.contrib.auth.backends.ModelBackend",
 #     "guardian.backends.ObjectPermissionBackend",
