@@ -1,0 +1,23 @@
+[Unit]
+Description=rhixescans daemon
+Requires=rhixescans.socket
+After=network.target
+
+[Service]
+ExecStart=/home/bot/rhixescans/env/bin/gunicorn \
+    --access-logfile - \
+    --workers 5 \
+    --bind unix:/run/rhixescans.sock \
+    core.wsgi:application
+
+WorkingDirectory=/home/bot/rhixescans
+
+User=bot
+Group=www-data
+
+Restart=always
+
+
+    
+[Install]
+WantedBy=multi-user.target

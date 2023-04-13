@@ -1,0 +1,17 @@
+docker-compose build
+docker-compose run --rm app django-admin startproject core .
+docker-compose run --rm app django-admin startapp Comics
+docker-compose build
+docker-compose up
+docker exec -it rhixescans /bin/bash
+docker-compose run --rm app sh -c "django-admin startproject core ."
+docker-compose up
+docker-compose run --rm app sh -c "python manage.py startapp Comics"
+docker-compose run --rm app sh -c "scrapy startproject image_downloader ."
+docker-compose run --rm app sh -c "scrapy genspider asurascans asurascans.com"
+docker-compose run --rm app sh -c "scrapy genspider reaperscans reaperscans.com"
+docker-compose run --rm app sh -c "python manage.py makemigrations"
+docker-compose run --rm app sh -c "python manage.py migrate"
+docker-compose run --rm app sh -c "python manage.py usergen 1 -a"
+docker-compose run --rm app sh -c "python manage.py downloads"
+docker-compose run --rm app sh -c "python manage.py loaddata db.json"
