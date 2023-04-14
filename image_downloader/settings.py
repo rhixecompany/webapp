@@ -51,6 +51,6 @@ DOWNLOADER_MIDDLEWARES = {
 # DELTAFETCH_ENABLED = True
 
 REQUEST_FINGERPRINTER_IMPLEMENTATION = '2.7'
-# TWISTED_REACTOR = 'twisted.internet.asyncioreactor.AsyncioSelectorReactor'
-TWISTED_REACTOR = ''
+TWISTED_REACTOR = 'twisted.internet.asyncioreactor.AsyncioSelectorReactor'
+# TWISTED_REACTOR = ''
 FEED_EXPORT_ENCODING = "utf-8"

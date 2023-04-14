@@ -58,7 +58,7 @@ class DownloaderImagesPipeline(ImagesPipeline):
                 urls = ItemAdapter(item).get(self.images_urls_field, [])
                 return [Request(u, meta={'foldername': item.get('title')}) for u in urls]
         else:
-            raise DropItem(f"Missing field image_urls in :{item}")
+            print(f"Missing field image_urls in :{item}")
 
     def file_path(self, request, response=None, info=None, *, item=None):
         import hashlib
@@ -74,12 +74,13 @@ class DownloaderImagesPipeline(ImagesPipeline):
                     request.url.encode()).hexdigest(5)
                 return '%s/%s%s' % (request.meta['foldername'], image_url_hash, request.url.split('/')[-1])
         else:
-            raise DropItem(f"Missing field in File-Path-Item:{item}")
+            print(f"Missing field in File-Path-Item:{item}")
 
     def item_completed(self, results, item, info):
         image_paths = [x['path'] for ok, x in results if ok]
         if not image_paths:
-            raise DropItem("Item contains no images")
+            print("Item contains no images")
+            # raise DropItem("Item contains no images")
         adapter = ItemAdapter(item)
         adapter['image_paths'] = image_paths
         return item
