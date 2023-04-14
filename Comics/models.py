@@ -64,7 +64,7 @@ class Comic(models.Model):
         max_length=1000, unique=True)
     alternativetitle = models.CharField(max_length=1000, null=True, blank=True)
     slug = models.CharField(max_length=1000, unique=True,)
-    description = models.TextField(blank=True)
+    description = models.TextField(null=True, blank=True)
     image_urls = models.URLField(max_length=10000)
     images = models.ImageField(_("Images"),
                                max_length=100000, upload_to=comics_images_location)
