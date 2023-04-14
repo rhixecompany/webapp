@@ -9,14 +9,14 @@ class CrawlerPipeline:
         adapter = ItemAdapter(item)
         if adapter.get('title') and adapter.get('slug') and adapter.get('image_paths'):
             if adapter.get('title') and adapter.get('slug') and adapter.get('name') and adapter.get('numPages') and adapter.get('image_paths'):
-                com = Comic.objects.get(Q(slug__contains=item['slug']))
-                if com is not None:
-                    try:
-                        chapter, created = Chapter.objects.filter(
-                            Q(name__icontains=item['name'])
-                        ).update_or_create(comic=com, name=item['name'], slug=item['chapterslug'], numPages=item['numPages'])
-                    except:
-                        print(f"Duplicate Item Found{item}")
+                com = Comic.objects.get(Q(slug__contains=item['slug']) |
+                                        Q(title__contains=item['title']))
+                if com:
+
+                    chapter, created = Chapter.objects.filter(
+                        Q(name__icontains=item['name'])
+                    ).update_or_create(comic=com, name=item['name'], slug=item['chapterslug'], numPages=item['numPages'])
+
                     images = item['image_paths']
                     if images is not None:
                         for img in images:
