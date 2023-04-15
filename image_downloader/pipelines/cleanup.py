@@ -32,6 +32,8 @@ class CrawlerPipeline:
                     else:
                         print(f"Missing field in Chapter-Item:{item}")
                     return item
+                else:
+                    print(f"Missing field in Chapter-Item:{item}")
 
             else:
                 images = item['image_paths']
