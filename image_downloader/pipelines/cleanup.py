@@ -9,8 +9,7 @@ class CrawlerPipeline:
         adapter = ItemAdapter(item)
         if adapter.get('title') and adapter.get('slug') and adapter.get('image_paths'):
             if adapter.get('title') and adapter.get('slug') and adapter.get('name') and adapter.get('numPages') and adapter.get('image_paths'):
-                com = Comic.objects.get(Q(slug__contains=item['slug']) |
-                                        Q(title__contains=item['title']))
+                com = Comic.objects.get(Q(slug__contains=item['slug']))
                 if com:
                     try:
                         chapter, created = Chapter.objects.filter(
@@ -33,6 +32,7 @@ class CrawlerPipeline:
                     else:
                         print(f"Missing field in Chapter-Item:{item}")
                     return item
+
             else:
                 images = item['image_paths']
                 if images is not None:
